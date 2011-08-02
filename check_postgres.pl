@@ -4080,18 +4080,19 @@ sub check_dbstats {
                 next ROW unless $keepit;
             }
 
-            my $msg = '';
+            my $msg = 'OK dbname: '.$dbname.' | ';
             for my $col (qw/
 backends commits rollbacks
 read hit
 idxscan idxtupread idxtupfetch idxblksread idxblkshit
 seqscan seqtupread
 ret fetch ins upd del/) {
-                $msg .= "$col:";
+                $msg .= "$col=";
                 $msg .= (exists $r->{$col} and length $r->{$col}) ? $r->{$col} : 0;
                 $msg .=  ' ';
             }
-            print "${msg}dbname:$dbname\n";
+            #print "${msg}dbname:$dbname\n";
+            print "${msg}\n";
         }
     }
 
